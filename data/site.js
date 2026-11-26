@@ -57,7 +57,7 @@ export const HOME_STATS = [
 // [text, result, highlight?]
 export const BOOT_LINES = [
   ['Mounting usb_1', 'ok'], ['Reading jacpot.kt', 'ok'], ['Reading very-very-very-safe-100-percent', '100% safe'],
-  ['Reading jachl.js', 'ok'], ['Checking hackathon wins', '0 found', true], ['Warming up the deck', 'ok'], ['Loading Luca Maiolo', 'ready'],
+  ['Reading jachl.js', 'ok'], ['Checking hackathons', 'first one pending'], ['Warming up the deck', 'ok'], ['Loading Luca Maiolo', 'ready', true],
 ];
 
 export const SCAN_LINES = [

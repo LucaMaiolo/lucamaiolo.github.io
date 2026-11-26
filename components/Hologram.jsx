@@ -6,9 +6,9 @@ import { PROJECTS } from '@/data/site';
 export default function Hologram() {
   return (
     <article className="holo u" id="holo" aria-live="polite">
-      {PROJECTS.map((p) => (
+      {PROJECTS.map((p, i) => (
         <div key={p.id} data-project={p.id} hidden>
-          <div className="meta"><span>USB 1 / {p.kind}</span><span>{p.year}</span></div>
+          <div className="meta"><span>USB {i + 1} / {p.kind}</span><span>{p.year}</span></div>
           <h2 style={{ textTransform: 'none' }}>{p.label}</h2>
           <dl>
             <dt>What</dt><dd>{p.what}</dd>
@@ -24,7 +24,7 @@ export default function Hologram() {
                   <span>{l.t}</span>
                 </a>
               ) : (
-                <span key={l.t} className={`hbtn ${l.primary ? 'primary' : ''}`} aria-disabled="true">{l.t}</span>
+                <span key={l.t} className="hbtn soon" aria-disabled="true">{l.t}</span>
               )
             )}
             <button type="button" className="hbtn" data-eject="" data-scramble=""><span>Eject USB</span></button>

@@ -19,13 +19,19 @@ export default function HomeView() {
             <span className="tag"><b>Y</b><span id="my">0000</span></span>
           </div>
         </Panel>
-        <Panel className="tr">
-          <dl className="stats">
-            <dt>System</dt><dd>LM/OS 2026.11</dd>
-            <dt>Uptime</dt><dd id="uptime">00:00:00</dd>
-            <dt>Signal</dt><dd><span className="sig" aria-hidden="true"><i /><i /><i /><i /></span> Strong</dd>
-            <dt>On file</dt><dd>{PROJECTS.length} projects</dd>
-          </dl>
+        <Panel as="nav" className="tr quick" aria-label="Projects">
+          <p className="dimtxt">Jump to a project</p>
+          <ul>
+            {PROJECTS.map((p) => (
+              <li key={p.id}>
+                <a href={`#${p.id}`} data-scramble="" style={{ '--c': p.color }}>
+                  <span className="d" aria-hidden="true" />
+                  <span>{p.tag}</span>
+                  <span className="st">{p.kind}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </Panel>
         <div className="ml" aria-hidden="true">45.4065° N</div>
         <div className="mr" aria-hidden="true">73.9496° W</div>
@@ -43,7 +49,7 @@ export default function HomeView() {
           <Stats rows={[
             ['Sticks found', '1', 'found'],
             ['Format', 'One project per USB'],
-            ['Hackathons', '0 so far, first one pending'],
+            ['Hackathons', 'First one coming up'],
           ]} />
         </Panel>
       </section>
