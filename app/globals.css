@@ -124,8 +124,12 @@ dl.stats dd{margin:0}
 
 [data-scramble].glitching{text-shadow:-2px 0 var(--red)}
 
-/* CRT glass: just the darkened edges of a curved tube. The bend itself is the #crtf filter. */
+/* CRT glass: scanlines, vignette and a slow rolling band. The bend itself is the #crtf filter. */
 #crt{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden}
+#crt::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg, rgba(0,0,0,.24) 0 1px, transparent 1px 3px);animation:flick 5s steps(40) infinite}
+#crt .roll{position:absolute;left:0;right:0;top:0;height:22vh;background:linear-gradient(transparent, rgba(255,255,255,.03), transparent);animation:roll 8s linear infinite}
+@keyframes flick{0%,100%{opacity:.85}50%{opacity:1}}
+@keyframes roll{from{transform:translateY(-25vh)}to{transform:translateY(125vh)}}
 #crt::after{content:"";position:absolute;inset:0;background:radial-gradient(125% 100% at 50% 50%, transparent 58%, rgba(0,0,0,.6) 100%)}
 #crt .glass{position:absolute;inset:0;box-shadow:inset 0 0 90px rgba(0,0,0,.55);
   background:radial-gradient(55% 40% at 28% 16%, rgba(255,255,255,.05), transparent 70%)}
@@ -223,7 +227,7 @@ dl.stats dd{margin:0}
   .ch2 .cta{padding-bottom:0;gap:10px}
   .ch2 .load{font-size:19px;padding:12px 20px}
 }
-@media (prefers-reduced-motion: reduce){ .clock::before,.scrollcue i{animation:none} }
+@media (prefers-reduced-motion: reduce){ .clock::before,.scrollcue i,#crt::before,#crt .roll{animation:none} }
 /* phones: the stats panel spans the width, the stick tags shrink to fit side by side, and the button clears the two-row bar */
 @media (max-width: 860px){
   .ch2{grid-template-columns:minmax(0,1fr)}
