@@ -10,15 +10,11 @@ export default function HomeView() {
   return (
     <div className="view" id="home">
       <section className="chapter ch1 gutter u">
-        <Panel className="tl">
+        <Panel className="tl" marked>
           <h1 className="name" style={{ textTransform: 'none' }}>Luca<br />Maiolo</h1>
           <p className="bio" style={plain}>
             Computer Science student at John Abbott College in Montreal. I build web apps and study how they get broken into.
           </p>
-          <div className="readout" aria-hidden="true">
-            <span className="tag"><b>X</b><span id="mx">0000</span></span>
-            <span className="tag"><b>Y</b><span id="my">0000</span></span>
-          </div>
         </Panel>
         <Panel as="nav" className="tr quick" aria-label="Projects">
           <p className="dimtxt">Jump to a project</p>
@@ -34,8 +30,6 @@ export default function HomeView() {
             ))}
           </ul>
         </Panel>
-        <div className="ml" aria-hidden="true">45.4065° N</div>
-        <div className="mr" aria-hidden="true">73.9496° W</div>
         <Panel className="bl">
           <Stats rows={HOME_STATS} />
         </Panel>
@@ -46,15 +40,13 @@ export default function HomeView() {
         <Panel className="scanlog">
           <pre id="scanlog" aria-live="off" />
         </Panel>
-        <Panel>
-          <Stats rows={[
-            ['Sticks found', '1', 'found'],
-            ['Format', 'One project per USB'],
-            ['Hackathons', 'First one coming up'],
-          ]} />
+        <Panel className="offhours">
+          <p className="dimtxt">Away from the keyboard</p>
+          <p>I teach swimming to kids aged 1 to 16 and coach a competitive group aged 9 to 12.</p>
+          <p>I debate with JACMUN, John Abbott&rsquo;s Model UN club, and I&rsquo;m learning to DJ, which is where the deck on the next page comes from.</p>
         </Panel>
         <div className="cta">
-          <p>{PROJECTS.length} projects on file</p>
+          <p>Three projects, one stick each</p>
           <button type="button" className="load" id="loadBtn" data-scramble="">
             <span className="sq" aria-hidden="true" /><span>Load projects</span>
           </button>

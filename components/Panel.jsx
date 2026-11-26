@@ -1,9 +1,8 @@
-// HUD panel with the two corner brackets drawn by .c1 / .c2.
-export default function Panel({ as: Tag = 'div', className = '', children, ...rest }) {
+// A HUD panel. Only `marked` panels get the corner brackets, so the frame points at what matters.
+export default function Panel({ as: Tag = 'div', className = '', marked = false, children, ...rest }) {
   return (
-    <Tag className={`panel ${className}`.trim()} {...rest}>
-      <i className="c1" />
-      <i className="c2" />
+    <Tag className={`panel ${marked ? 'marked' : ''} ${className}`.replace(/\s+/g, ' ').trim()} {...rest}>
+      {marked && <><i className="c1" /><i className="c2" /></>}
       {children}
     </Tag>
   );
