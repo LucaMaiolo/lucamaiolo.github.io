@@ -1,0 +1,753 @@
+---
+layout: default
+title: Luca Maiolo | LM/OS
+head: home-head.html
+---
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="crtf" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB" x="0" y="0" width="1440" height="900">
+    <feImage id="crtmap" x="0" y="0" width="1440" height="900" preserveAspectRatio="none" result="map"/>
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="40" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+<div id="screen">
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="grid" aria-hidden="true"></div>
+<div id="scroller" tabindex="-1">
+
+<!-- HOME -->
+<div class="view" id="home">
+  <section class="chapter ch1 gutter u">
+    <div class="panel tl"><i class="c1"></i><i class="c2"></i>
+      <h1 class="name" style="text-transform:none">Luca<br>Maiolo</h1>
+      <p class="bio" style="text-transform:none;letter-spacing:0">Computer Science student at John Abbott College in Montreal. I build web apps and study how they get broken into.</p>
+      <div class="readout" aria-hidden="true"><span class="tag"><b>X</b><span id="mx">0000</span></span><span class="tag"><b>Y</b><span id="my">0000</span></span></div>
+    </div>
+    <div class="panel tr"><i class="c1"></i><i class="c2"></i>
+      <dl class="stats">
+        <dt>System</dt><dd>LM/OS 2026.11</dd>
+        <dt>Uptime</dt><dd id="uptime">00:00:00</dd>
+        <dt>Signal</dt><dd><span class="sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Strong</dd>
+        <dt>On file</dt><dd>3 projects</dd>
+      </dl>
+    </div>
+    <div class="ml" aria-hidden="true">45.4065° N</div>
+    <div class="mr" aria-hidden="true">73.9496° W</div>
+    <div class="panel bl"><i class="c1"></i><i class="c2"></i>
+      <dl class="stats">
+        <dt>Status</dt><dd>Class of 2027</dd>
+        <dt>Base</dt><dd>Montreal, QC</dd>
+        <dt>Focus</dt><dd>Web dev, security</dd>
+        <dt>Off hours</dt><dd>Swim coach, JACMUN, DJ</dd>
+      </dl>
+    </div>
+    <div class="br"><span class="scrollcue">Scroll<i aria-hidden="true"></i></span></div>
+  </section>
+
+  <section class="chapter ch2 gutter u">
+    <div class="panel scanlog"><i class="c1"></i><i class="c2"></i>
+      <pre id="scanlog" aria-live="off"></pre>
+    </div>
+    <div class="panel"><i class="c1"></i><i class="c2"></i>
+      <dl class="stats">
+        <dt>Sticks found</dt><dd id="found">1</dd>
+        <dt>Format</dt><dd>One project per USB</dd>
+        <dt>Hackathons</dt><dd>0 so far, first one pending</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="chapter ch3 gutter u">
+    <p>3 projects on file</p>
+    <button type="button" class="load" id="loadBtn" data-scramble><span class="sq" aria-hidden="true"></span><span>Load projects</span></button>
+  </section>
+</div>
+<div class="locks" id="locks" aria-hidden="true"></div>
+
+<!-- PROJECTS -->
+<div class="view" id="projects" hidden>
+  <div class="pv"></div>
+  <section class="crate panel u" aria-label="USB crate"><i class="c1"></i><i class="c2"></i>
+    <p>Pick a USB, or click one on the table</p>
+    <ul id="crateList"></ul>
+  </section>
+  <p class="pvhint u" id="pvhint">Pick a USB to load it</p>
+  <header class="pvtitle u" id="pvtitle"><span class="dimtxt">CH 02</span><h1 class="name">Projects</h1><small>3 tracks on file</small></header>
+  <section class="deckstat panel u" id="deckstat" aria-label="Deck status"><i class="c1"></i><i class="c2"></i>
+    <h3>Deck status</h3>
+    <dl class="stats">
+      <dt>Deck</dt><dd>XDJ-XZ</dd>
+      <dt>USB 1</dt><dd id="dsSlot">Empty</dd>
+      <dt>Type</dt><dd id="dsType">--</dd>
+      <dt>Stack</dt><dd id="dsStack">--</dd>
+      <dt>Year</dt><dd id="dsYear">--</dd>
+      <dt>Elapsed</dt><dd id="dsTime">00:00</dd>
+    </dl>
+  </section>
+  <section class="meter panel u" id="meter" aria-hidden="true"><i class="c1"></i><i class="c2"></i>
+    <h3>Output</h3>
+    <div class="bars" id="bars"></div>
+    <div class="row"><span>L</span><span id="mtState">Standby</span><span>R</span></div>
+  </section>
+  <span class="sidelab l u" aria-hidden="true">Deck A / Load</span>
+  <span class="sidelab r u" aria-hidden="true">Deck B / Cue</span>
+  <article class="holo u" id="holo" aria-live="polite"></article>
+</div>
+
+<div class="view" id="soon" hidden>
+  <section class="chapter soonv gutter u">
+    <div class="panel"><i class="c1"></i><i class="c2"></i>
+      <p class="dimtxt">No signal on this channel yet</p>
+      <h1 class="name" id="soonTitle">About</h1>
+      <p class="bio">This page is next on the build list.</p>
+      <a class="load" href="#" data-scramble><span class="sq" aria-hidden="true"></span><span>Back to index</span></a>
+    </div>
+  </section>
+</div>
+
+</div><!-- /scroller -->
+<footer class="bar u">
+  <nav aria-label="Main">
+    <a href="#" data-view="home" data-scramble>Index</a>
+    <a href="#projects" data-view="projects" data-scramble>Projects</a>
+    <a href="#about" data-view="about" data-scramble>About</a>
+    <a href="#hackathons" data-view="hackathons" data-scramble>Hackathons</a>
+    <a href="#pitches" data-view="pitches" data-scramble>Pitches</a>
+    <a href="#beyond" data-view="beyond" data-scramble>Beyond code</a>
+  </nav>
+  <div class="right">
+    <span class="clock" id="clock" aria-label="Montreal time">MTL --:--:--</span>
+    <button type="button" class="ghost-btn reboot u" id="reboot" data-scramble>Reboot</button>
+    <button type="button" class="ping u" id="ping" data-scramble>Ping me</button>
+  </div>
+</footer>
+<div class="toast u" id="toast" hidden></div>
+<div id="xh" hidden aria-hidden="true"><svg><path class="v"/><path class="h"/></svg><i class="p"></i><span class="t"></span></div>
+</div><!-- /screen -->
+
+<div id="boot" role="status" aria-live="polite" hidden>
+  <header class="u"><span>LM/OS 2026.11</span><span>Montreal node</span></header>
+  <pre class="log u" id="log"></pre>
+  <footer><span class="count" id="count">000</span><span class="skip u">Click or press any key to skip</span></footer>
+  <div class="barline" id="barline"></div>
+</div>
+<canvas id="wipe" hidden aria-hidden="true"></canvas>
+<div id="tv" hidden aria-hidden="true"><div class="lid top"></div><div class="lid bot"></div><div class="ln"></div><div class="lab" id="tvLabel"></div></div>
+<div id="crt" aria-hidden="true"><div class="roll"></div><div class="glass"></div></div>
+
+<script type="importmap">
+{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const PROJECTS = [
+  { id:'jacpot', label:'JACpot', kind:'Student marketplace', color:'#f2a93b', stack:'Kotlin', made:'School project', year:'2026',
+    what:'A marketplace where John Abbott students buy and sell textbooks, calculators and other supplies to each other.',
+    who:'Students who want cheaper used materials, and students selling what they no longer need, without meeting strangers on Kijiji.',
+    why:'Finding cheap school supplies means jumping through a lot of hoops. This puts the whole school in one place.',
+    links:[{t:'Open the repo', h:'https://github.com/JACpot-Student-Marketplace/JACpot-Student-Marketplace', primary:true}] },
+  { id:'very-safe', label:'very-very-very-safe-100-percent', short:'very-very-\nvery-safe', kind:'IP logger demo', color:'#ff5d63', stack:'Web app on Vercel', made:'School project', year:'2026',
+    what:'A security awareness demo. One click on an innocent-looking link shows you your IP address, rough location and browser.',
+    who:'Everyday people who click links without thinking, and anyone teaching basic online safety.',
+    why:'Built out of my interest in offensive security. It only logs visitors who open it on purpose, and explains how to protect yourself.',
+    links:[{t:'Open the repo', h:'https://github.com/LucaMaiolo/very-very-very-safe-100-percent', primary:true},{t:'Try the live demo', h:'https://very-very-very-safe-100-percent.vercel.app'}] },
+  { id:'jachl', label:'JACHL', kind:'Arcade hockey game', color:'#64cdf2', stack:'JavaScript, Matter.js', made:'Game Programming final', year:'2026',
+    what:'Top-down arcade hockey in the browser. Skate with the mouse, charge shots, pass to an AI teammate. First to 7 wins.',
+    who:'Anyone who wants a quick pick-up-and-play hockey match.',
+    why:'I built the shooting and passing system and the AI that switches between chase, attack and defend when possession changes.',
+    links:[{t:'Repo goes public after Dec 17', h:null, primary:true}] },
+];
+
+const $ = s => document.querySelector(s);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp01 = v => Math.max(0, Math.min(1, v));
+const ease = t => t<.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+const smooth = (a, b, v) => clamp01((v - a)/(b - a));
+$('#found').textContent = '1';
+
+/* ---------- scrambled-letter hover ---------- */
+const GLYPHS = '█▓▒░<>/\\#_=+01';
+function scramble(el){
+  if (el._busy || reduce) return; el._busy = true;
+  const nodes = [...el.querySelectorAll('span')].filter(n => !n.children.length && n.textContent.trim()); const targets = nodes.length ? nodes : [el];
+  const orig = targets.map(n => n.textContent); const t0 = performance.now(), dur = 380;
+  el.classList.add('glitching');
+  (function tick(now){
+    const k = Math.min(1, (now - t0)/dur);
+    targets.forEach((n, i) => { const s = orig[i]; const fixed = Math.floor(s.length * k);
+      n.textContent = s.split('').map((ch, j) => j < fixed || ch === ' ' ? ch : GLYPHS[(Math.random()*GLYPHS.length)|0]).join(''); });
+    if (k < 1) requestAnimationFrame(tick); else { targets.forEach((n,i) => n.textContent = orig[i]); el.classList.remove('glitching'); el._busy = false; }
+  })(t0);
+}
+function wireScramble(root){ root.querySelectorAll('[data-scramble]').forEach(el => { if (el._wired) return; el._wired = true; el.addEventListener('focus', () => scramble(el)); }); }
+wireScramble(document);
+
+/* ---------- small HUD bits ---------- */
+addEventListener('pointermove', e => { $('#mx').textContent = String(Math.round(e.clientX)).padStart(4,'0'); $('#my').textContent = String(Math.round(e.clientY)).padStart(4,'0'); });
+const fmt = new Intl.DateTimeFormat('en-CA', { timeZone:'America/Toronto', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false });
+const tickClock = () => { $('#clock').textContent = 'MTL ' + fmt.format(new Date()); }; tickClock(); setInterval(tickClock, 1000);
+const t0Page = Date.now();
+setInterval(() => { const s = Math.floor((Date.now() - t0Page)/1000); $('#uptime').textContent = [s/3600, s/60%60, s%60].map(v => String(Math.floor(v)).padStart(2,'0')).join(':'); }, 1000);
+const SCAN = [['Mount /dev/usb', 'ok'], ['Found jacpot.kt', 'ok'], ['Found very-very-very-safe', '100% safe'], ['Found jachl.js', 'ok'], ['3 sticks ready', 'ok'], ['Waiting for load', 'now', 'hot']];
+let scanShown = -1;
+function setScan(n){ if (n === scanShown) return; scanShown = n;
+  $('#scanlog').innerHTML = SCAN.slice(0, n).map(([a,b,h]) => `${a} <span class="${h?'hot':'ok'}">[${b}]</span>`).join('\n'); }
+const barsEl = $('#bars'); for (let i=0;i<16;i++) barsEl.appendChild(document.createElement('i'));
+let toastT; function toast(msg){ const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2200); }
+/* ---------- the curved tube ----------
+   One SVG displacement map bends #screen (3D view, text, scrolling pages and the bottom bar) together.
+   The curve is normalised so the corners stay put: it fills the whole window with no black rim. */
+const SC = $('#scroller'), screenEl = $('#screen');
+const CURVE = 0.09;
+// the bulge fades out toward the bottom so the bottom bar stays almost straight
+const bendFill = (u, v) => { const cx = u - .5, cy = v - .5, f = (1 + CURVE*(cx*cx + cy*cy)) / (1 + CURVE*0.5);
+  const b = clamp01((v - 0.45)/0.55), w = 1 - 0.75*b*b*(3 - 2*b), g = 1 + (f - 1)*w; return [.5 + cx*g, .5 + cy*g]; };
+let curved = false;
+// where a point on the glass really sits on the flat page underneath
+const toPage = (x, y) => { if (!curved) return [x, y]; const [u, v] = bendFill(x/innerWidth, y/innerHeight); return [u*innerWidth, v*innerHeight]; };
+function buildCurve(){
+  curved = matchMedia('(hover: hover) and (pointer: fine)').matches && innerWidth >= 860 && !reduce;
+  screenEl.classList.toggle('curved', curved); if (!curved) return;
+  const W = innerWidth, H = innerHeight, MW = 192, MH = 120, dx = new Float32Array(MW*MH), dy = new Float32Array(MW*MH); let m = 0;
+  for (let j=0;j<MH;j++) for (let i=0;i<MW;i++){ const u = (i+.5)/MW, v = (j+.5)/MH, [su, sv] = bendFill(u, v), k = j*MW+i;
+    dx[k] = (su - u)*W; dy[k] = (sv - v)*H; m = Math.max(m, Math.abs(dx[k]), Math.abs(dy[k])); }
+  const S = m*2.1, c = document.createElement('canvas'); c.width = MW; c.height = MH; const x = c.getContext('2d'), img = x.createImageData(MW, MH);
+  for (let k=0;k<MW*MH;k++){ img.data[k*4] = Math.round(255*(.5 + dx[k]/S)); img.data[k*4+1] = Math.round(255*(.5 + dy[k]/S)); img.data[k*4+2] = 128; img.data[k*4+3] = 255; }
+  x.putImageData(img, 0, 0);
+  const f = $('#crtf'), map = $('#crtmap');
+  for (const el of [f, map]){ el.setAttribute('width', W); el.setAttribute('height', H); }
+  map.setAttribute('href', c.toDataURL()); f.querySelector('feDisplacementMap').setAttribute('scale', S.toFixed(2));
+}
+buildCurve(); addEventListener('resize', buildCurve);
+SC.focus({ preventScroll:true });
+
+// hovers and clicks follow what you see on the glass, not the flat page underneath
+let pageX = -1, pageY = -1, hovEl = null;
+function setHover(el){
+  if (el === hovEl) return; if (hovEl) hovEl.classList.remove('hov'); hovEl = el;
+  if (el){ el.classList.add('hov'); if (el.matches('[data-scramble]')) scramble(el); }
+}
+addEventListener('pointermove', e => {
+  [pageX, pageY] = toPage(e.clientX, e.clientY);
+  const t = document.elementFromPoint(pageX, pageY);
+  setHover(t ? t.closest('a, button, .hbtn, [data-scramble]') : null);
+});
+addEventListener('click', e => {
+  if (!curved || !e.isTrusted || e.detail === 0) return; // keyboard clicks are already in the right place
+  const [qx, qy] = toPage(e.clientX, e.clientY), t = document.elementFromPoint(qx, qy);
+  if (!t) return;
+  e.stopPropagation(); e.preventDefault();
+  t.dispatchEvent(new MouseEvent('click', { bubbles:true, cancelable:true, view:window, clientX:qx, clientY:qy }));
+}, true);
+
+/* crosshair that follows the mouse across the whole page */
+const xh = $('#xh'), xv = xh.querySelector('path.v'), xhh = xh.querySelector('path.h'), xp = xh.querySelector('.p'), xt = xh.querySelector('.t');
+let deckHot = false;
+if (matchMedia('(hover: hover) and (pointer: fine)').matches){
+  addEventListener('pointermove', e => {
+    const [x, y] = toPage(e.clientX, e.clientY); xh.hidden = false;
+    xv.setAttribute('d', `M${x} -40V${innerHeight + 40}`); xhh.setAttribute('d', `M-40 ${y}H${innerWidth + 40}`); xp.style.transform = `translate(${x}px, ${y}px)`;
+    const flipX = x > innerWidth - 110, flipY = y > innerHeight - 70;
+    xt.style.transform = `translate(${x + (flipX ? -92 : 14)}px, ${y + (flipY ? -44 : 12)}px)`;
+    xt.textContent = `X:${Math.round(e.clientX)}PX\nY:${Math.round(e.clientY)}PX`;
+    xh.classList.toggle('hot', !!hovEl || deckHot);
+  });
+  document.documentElement.addEventListener('mouseleave', () => { xh.hidden = true; });
+}
+$('#ping').addEventListener('click', async () => {
+  const email = 'lucamaiolo07@gmail.com';
+  try { await navigator.clipboard.writeText(email); toast('Email copied: ' + email); } catch(e){ toast(email); }
+});
+
+/* ---------- views ---------- */
+const SOON = { about:'About', hackathons:'Hackathons', pitches:'Pitch videos', beyond:'Beyond code' };
+const CHANNELS = ['home','projects','about','hackathons','pitches','beyond'];
+let view = 'home', current = 'home', firstRoute = true;
+const keyFor = h => (h === 'projects' || PROJECTS.some(p => p.id === h)) ? 'projects' : SOON[h] ? h : 'home';
+function applyView(key){
+  const was = view; view = SOON[key] ? 'soon' : key;
+  if (was === 'projects' && view !== 'projects') resetDeck();
+  $('#home').hidden = view !== 'home'; $('#locks').hidden = view !== 'home'; $('#projects').hidden = view !== 'projects'; $('#soon').hidden = view !== 'soon';
+  if (SOON[key]) $('#soonTitle').textContent = SOON[key];
+  SC.scrollTo(0, 0);
+  document.querySelectorAll('.bar nav a').forEach(a => a.dataset.view === key ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+}
+// an old TV changing channel: the picture squeezes to a line, then opens on the new page
+function tvSwitch(key){
+  const tv = $('#tv'), label = SOON[key] || (key === 'projects' ? 'Projects' : 'Index');
+  $('#tvLabel').textContent = 'CH ' + String(CHANNELS.indexOf(key) + 1).padStart(2, '0') + ' ' + label;
+  tv.hidden = false; tv.className = 'out';
+  return new Promise(res => setTimeout(() => { applyView(key); tv.className = 'in'; setTimeout(() => { tv.hidden = true; tv.className = ''; res(); }, 560); }, 470));
+}
+async function route(){
+  const h = location.hash.slice(1), key = keyFor(h), proj = PROJECTS.find(p => p.id === h);
+  if (key !== current){ current = key; if (firstRoute || reduce) applyView(key); else await tvSwitch(key); }
+  firstRoute = false;
+  if (proj && deckReady && loadedId !== proj.id) toggle(proj.id);
+}
+addEventListener('hashchange', route);
+$('#loadBtn').addEventListener('click', () => { location.hash = 'projects'; });
+
+/* ---------- boot screen ---------- */
+const LINES = [
+  ['Mounting usb_1', 'ok'], ['Reading jacpot.kt', 'ok'], ['Reading very-very-very-safe-100-percent', '100% safe'],
+  ['Reading jachl.js', 'ok'], ['Checking hackathon wins', '0 found', 'hot'], ['Warming up the deck', 'ok'], ['Loading Luca Maiolo', 'ready']
+];
+let modelsReady = false, revealStart = -1;
+async function boot(){
+  const el = $('#boot'), log = $('#log'), count = $('#count'), bar = $('#barline');
+  el.hidden = false; log.innerHTML = ''; revealStart = -1;
+  let skipped = false; const skip = () => { skipped = true; };
+  addEventListener('keydown', skip, { once:true }); el.addEventListener('pointerdown', skip, { once:true });
+  const minDur = reduce ? 300 : 2600, t0 = performance.now(); let shown = 0;
+  const line = i => { const [a,b,hot] = LINES[i]; log.insertAdjacentHTML('beforeend', `${a} <span class="${hot?'hot':'ok'}">[${b}]</span>\n`); };
+  await new Promise(res => {
+    (function tick(now){
+      const k = skipped && modelsReady ? 1 : Math.min(Math.min(1, (now - t0)/minDur), modelsReady ? 1 : 0.92);
+      count.textContent = String(Math.round(k*100)).padStart(3,'0'); bar.style.width = (k*100) + '%';
+      const want = Math.min(LINES.length, Math.floor(k * (LINES.length + 0.6)));
+      while (shown < want) line(shown++);
+      if (k >= 1){ while (shown < LINES.length) line(shown++); return setTimeout(res, skipped || reduce ? 0 : 260); }
+      requestAnimationFrame(tick);
+    })(t0);
+  });
+  removeEventListener('keydown', skip);
+  if (!reduce) await inkWipe(() => { el.hidden = true; }); else el.hidden = true;
+  revealStart = performance.now(); try { sessionStorage.setItem('lm-booted', '1'); } catch(e){}
+}
+function inkWipe(onCovered){
+  const c = $('#wipe'); c.hidden = false;
+  const W = 160, H = Math.max(90, Math.round(160 * innerHeight / innerWidth)); c.width = W; c.height = H;
+  const x = c.getContext('2d'); const img = x.createImageData(W, H);
+  const g = 24, rnd = []; for (let i=0;i<(g+1)*(g+1);i++) rnd.push(Math.random());
+  const n = (u,v) => { const X = u*g, Y = v*g, xi = Math.floor(X), yi = Math.floor(Y), fx = X-xi, fy = Y-yi;
+    const a = rnd[yi*(g+1)+xi], b = rnd[yi*(g+1)+xi+1], cc = rnd[(yi+1)*(g+1)+xi], d = rnd[(yi+1)*(g+1)+xi+1];
+    const sx = fx*fx*(3-2*fx), sy = fy*fy*(3-2*fy); return a + (b-a)*sx + (cc-a)*sy + (a-b-cc+d)*sx*sy; };
+  const field = new Float32Array(W*H);
+  for (let j=0;j<H;j++) for (let i=0;i<W;i++){ const u = i/W, v = j/H; field[j*W+i] = v*0.75 + n(u*0.999, v*0.999)*0.6 + n((u*3)%1*0.999, (v*3)%1*0.999)*0.25; }
+  return new Promise(res => {
+    const t0 = performance.now(); let covered = false;
+    (function tick(now){
+      const t = (now - t0)/1000; let lo, hi;
+      if (t < 0.55){ lo = -1; hi = (t/0.55)*1.7 - 0.1; }
+      else { if (!covered){ covered = true; onCovered(); } lo = 1.6 - ((t-0.55)/0.7)*1.9; hi = 9; }
+      for (let p=0;p<W*H;p++){ const o = p*4; img.data[o]=226; img.data[o+1]=65; img.data[o+2]=47; img.data[o+3] = field[p] > lo && field[p] < hi ? 255 : 0; }
+      x.putImageData(img, 0, 0);
+      if (t < 1.3) requestAnimationFrame(tick); else { c.hidden = true; res(); }
+    })(t0);
+  });
+}
+$('#reboot').addEventListener('click', () => {
+  boot(); // shows the boot screen right away, the reset happens underneath it
+  try { history.replaceState(null, '', location.href.split('#')[0]); } catch(e){}
+  if (current !== 'home'){ current = 'home'; applyView('home'); } else SC.scrollTo(0, 0);
+  resetDeck(); scanShown = -1;
+});
+
+/* ---------- three.js ---------- */
+const canvas = $('#scene');
+let renderer; try { renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true }); } catch(e){ modelsReady = true; }
+const clock = new THREE.Clock();
+
+// home: dithered sticks
+const homeScene = new THREE.Scene(), homeCam = new THREE.PerspectiveCamera(28, 1, 0.5, 300);
+homeScene.add(new THREE.HemisphereLight('#ffffff', '#505050', 3.4));
+const hKey = new THREE.DirectionalLight('#ffffff', 3.6); hKey.position.set(-10, 14, 18); homeScene.add(hKey);
+const homeSticks = [];
+// projects: the real deck
+const deckScene = new THREE.Scene(), deckCam = new THREE.PerspectiveCamera(30, 1, 0.5, 600);
+let consoleRoot, screenMesh, screenCtx, screenTex, beam, SCR = null;
+let holoA = 0; // 0 = hologram sits flat on the deck screen, 1 = fully projected
+const SLOT = new THREE.Vector3(30.8, 4.72, -16.7); let surfaceY = 4.72;
+const deckSticks = []; let loadedId = null, busy = false, loadT = 0, screenMode = 'idle', deckReady = false;
+
+let rt, post, postScene, postCam, rtScene, barrel, barrelScene; const BEND = 0.0;
+if (renderer){
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setClearColor(0x000000, 0);
+  document.querySelector('.grid').remove(); // the grid is drawn in the curved pass instead
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  rt = new THREE.WebGLRenderTarget(4, 4, { minFilter:THREE.NearestFilter, magFilter:THREE.NearestFilter });
+  post = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([-1,-1,0, 3,-1,0, -1,3,0], 3)),
+    new THREE.ShaderMaterial({ transparent:true, depthTest:false,
+      uniforms:{ tex:{ value: rt.texture }, cell:{ value: 6 }, res:{ value: new THREE.Vector2(1,1) }, grow:{ value: 0 }, red:{ value: new THREE.Color('#e2412f') }, ghost:{ value: new THREE.Color('#f1f1ee') } },
+      vertexShader:'void main(){ gl_Position = vec4(position.xy, 0., 1.); }',
+      fragmentShader:`uniform sampler2D tex; uniform float cell; uniform vec2 res; uniform float grow; uniform vec3 red; uniform vec3 ghost;
+        void main(){
+          vec2 id = floor(gl_FragCoord.xy / cell);
+          vec4 c = texture2D(tex, (id + 0.5) * cell / res);
+          if (c.a < 0.1) discard;
+          float l = pow(dot(c.rgb, vec3(.299,.587,.114)), 1.0/2.2);
+          float sat = max(c.r, max(c.g, c.b)) - min(c.r, min(c.g, c.b));
+          vec2 f = fract(gl_FragCoord.xy / cell) - 0.5;
+          float r = (0.14 + 0.4 * l) * grow;
+          if (max(abs(f.x), abs(f.y)) > r) discard;
+          gl_FragColor = vec4(sat > 0.45 ? red : ghost * (0.45 + 0.55 * l), 1.0);
+        }` }));
+  post.frustumCulled = false; postScene = new THREE.Scene(); postScene.add(post); postCam = new THREE.Camera();
+  // final pass: bend the picture like a curved CRT tube, with a little colour fringing at the edges
+  rtScene = new THREE.WebGLRenderTarget(4, 4, { type:THREE.HalfFloatType, samples:4 });
+  barrel = new THREE.Mesh(post.geometry, new THREE.ShaderMaterial({ transparent:true, depthTest:false,
+    uniforms:{ tex:{ value: rtScene.texture }, mode:{ value: 0 }, k:{ value: BEND }, res:{ value: new THREE.Vector2(1,1) }, dpr:{ value: 1 } },
+    vertexShader:'varying vec2 vUv; void main(){ vUv = position.xy*0.5+0.5; gl_Position = vec4(position.xy, 0., 1.); }',
+    fragmentShader:`uniform sampler2D tex; uniform float mode; uniform float k; uniform vec2 res; uniform float dpr; varying vec2 vUv;
+      vec2 bend(vec2 uv, float s){ vec2 c = uv - 0.5; return 0.5 + c * (1.0 + k*s*dot(c,c)) * (1.0 - k*0.12); }
+      // x: dot grid and guide lines behind the picture. y: edge rulers on top. Drawn before bending, so they bow with the glass.
+      vec2 hud(vec2 uv){
+        vec2 sz = res / dpr, px = uv * sz;
+        vec2 g = mod(px, 12.0) - 6.0; float back = (1.0 - smoothstep(0.7, 1.4, length(g))) * 0.11;
+        vec2 m = abs(mod(px + 48.0, 96.0) - 48.0); if (m.x < 0.6 || m.y < 0.6) back = max(back, 0.06);
+        float fy = sz.y - px.y;
+        float lenY = mod(fy, 120.0) < 1.0 ? 14.0 : (mod(fy, 24.0) < 1.0 ? 7.0 : 0.0);
+        float lenX = mod(px.x, 120.0) < 1.0 ? 14.0 : (mod(px.x, 24.0) < 1.0 ? 7.0 : 0.0);
+        float front = 0.0;
+        if (px.x > 3.0 && px.x < 3.0 + lenY) front = 0.5;
+        if (px.x < sz.x - 3.0 && px.x > sz.x - 3.0 - lenY) front = 0.5;
+        if (fy > 3.0 && fy < 3.0 + lenX) front = 0.5;
+        return vec2(back, front);
+      }
+      void main(){
+        vec2 uv = bend(vUv, 1.0);
+        vec4 c = texture2D(tex, uv);
+        if (mode > 0.5){ vec2 o = (uv - 0.5) * 0.004; c.r = texture2D(tex, uv + o).r; c.b = texture2D(tex, uv - o).b; }
+        float a = clamp(c.a, 0.0, 1.0);
+        if (mode < 0.5) c.rgb = pow(max(c.rgb, 0.0), vec3(2.2));
+        gl_FragColor = vec4(c.rgb, 1.0);
+        #include <tonemapping_fragment>
+        #include <colorspace_fragment>
+        vec2 h = hud(uv); vec3 ghost = vec3(0.945, 0.945, 0.933);
+        vec3 col = mix(vec3(0.05, 0.05, 0.047), ghost, h.x);
+        col = mix(col, gl_FragColor.rgb, a);
+        col = mix(col, ghost, h.y);
+        gl_FragColor = vec4(col, 1.0);
+      }` }));
+  barrel.frustumCulled = false; barrelScene = new THREE.Scene(); barrelScene.add(barrel);
+
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  deckScene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture; deckScene.environmentIntensity = 0.5;
+  deckScene.add(new THREE.HemisphereLight('#d9d4e6', '#111', 0.7));
+  const key = new THREE.SpotLight('#fff1dc', 900, 0, 0.6, 0.7, 1.6); key.position.set(-30, 70, 40); deckScene.add(key, key.target);
+  const rim = new THREE.SpotLight('#ff6a55', 500, 0, 0.5, 0.8, 1.6); rim.position.set(60, 40, -50); deckScene.add(rim, rim.target);
+  const table = new THREE.Mesh(new THREE.PlaneGeometry(400, 260), new THREE.MeshStandardMaterial({ color:'#101010', roughness:.9 }));
+  table.rotation.x = -Math.PI/2; table.position.y = -1.19; deckScene.add(table);
+}
+
+async function loadModel(loader, name){
+  // models are Meshopt-compressed .glb files served from /assets/models
+  return loader.loadAsync('/assets/models/' + name);
+}
+function fontsReady(){ return Promise.race([Promise.all(['700 40px "Barlow Semi Condensed"','40px "Permanent Marker"'].map(s => document.fonts.load(s))), new Promise(r => setTimeout(r, 2500))]); }
+
+function stickerTexture(p){
+  const c = document.createElement('canvas'); c.width = 1024; c.height = 290; const x = c.getContext('2d');
+  x.fillStyle = '#ece2c6'; x.fillRect(0,0,1024,290);
+  x.fillStyle = 'rgba(0,0,0,.08)'; for (let i=0;i<1024;i+=6){ x.fillRect(i, 0, 3, Math.random()*8); x.fillRect(i, 290-Math.random()*8, 3, 8); }
+  x.fillStyle = p.color; x.beginPath(); x.arc(70,145,34,0,Math.PI*2); x.fill();
+  x.fillStyle = '#1d1622'; x.textBaseline = 'middle';
+  const lines = (p.short || p.label).split('\n'); const size = lines.length > 1 ? 92 : 150;
+  x.font = `${size}px "Permanent Marker", cursive`;
+  lines.forEach((l,i) => x.fillText(l, 130, 145 + (i - (lines.length-1)/2) * size * 1.02, 860));
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+}
+function makeStick(src, p){
+  const model = src.clone(true);
+  model.traverse(o => { if (o.isMesh){ o.material = o.material.clone(); o.userData.stick = p.id; } });
+  const sticker = new THREE.Mesh(new THREE.PlaneGeometry(4.9, 1.38), new THREE.MeshStandardMaterial({ map: stickerTexture(p), roughness:.9 }));
+  sticker.rotation.x = -Math.PI/2; sticker.position.set(0.3, 0.515, 0); sticker.userData.stick = p.id; model.add(sticker);
+  const g = new THREE.Group(); g.add(model); return g;
+}
+// upright, plug down, sticker facing the viewer
+const UPRIGHT = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, Math.PI/2, 0)).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, Math.PI/2)));
+
+if (renderer){
+  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+  Promise.all([loadModel(loader, 'console.glb'), loadModel(loader, 'usb.glb'), fontsReady()]).then(([c, u]) => {
+    // home sticks: centre each on the body, stand them up
+    PROJECTS.forEach((p, i) => {
+      const s = makeStick(u.scene, p); s.children[0].position.x = 0.76; // centre the stick on its length
+      const spin = new THREE.Group(); spin.add(s); s.quaternion.copy(UPRIGHT);
+      homeScene.add(spin); homeSticks.push({ p, spin, el: null });
+    });
+    // deck
+    consoleRoot = c.scene; deckScene.add(consoleRoot);
+    consoleRoot.traverse(o => { if (o.isMesh && o.name === 'console_screen') screenMesh = o; });
+    setupScreen();
+    const hit = new THREE.Raycaster(new THREE.Vector3(SLOT.x, 40, SLOT.z), new THREE.Vector3(0,-1,0)).intersectObject(consoleRoot, true)[0]; if (hit) surfaceY = SLOT.y = hit.point.y;
+    buildDeckSticks(u.scene);
+    const bb = new THREE.Box3().setFromObject(consoleRoot), mid = (bb.min.x + bb.max.x)/2;
+    for (const k of ['wide', 'wideN']){ shots[k].pos.x = shots[k].look.x = mid; }
+    for (const k of ['holo', 'holoN']){ shots[k].pos.x = shots[k].look.x = SCR.cx; }
+    cam.pos.copy(shots.wide.pos); cam.look.copy(shots.wide.look);
+    buildBeam(); beam.position.x = SCR.cx;
+    modelsReady = true; deckReady = true; buildLocks(); resize(); route();
+  }).catch(err => { console.error(err); modelsReady = true; toast('The 3D models did not load'); });
+}
+
+/* ---------- home: lock-on labels ---------- */
+function buildLocks(){
+  const wrap = $('#locks'); wrap.innerHTML = '';
+  homeSticks.forEach(s => { const d = document.createElement('div'); d.className = 'lock u';
+    d.innerHTML = `<div class="box"></div><b>${s.p.label.length > 20 ? 'very-very-very-safe' : s.p.label}</b><span>${s.p.kind}</span>`; wrap.appendChild(d); s.el = d; });
+}
+
+/* ---------- deck ---------- */
+const STICK_SCALE = 1.4, PLUG = 2.46 * STICK_SCALE;
+function buildDeckSticks(src){
+  const homes = [ [-14, 30, -0.10], [1, 32, 0.06], [16, 30, 0.12] ];
+  PROJECTS.forEach((p, i) => {
+    const g = makeStick(src, p); g.scale.setScalar(STICK_SCALE);
+    const [hx, hz, yaw] = homes[i];
+    const home = { pos: new THREE.Vector3(hx, -1.19 + 0.44*STICK_SCALE, hz), quat: new THREE.Quaternion().setFromEuler(new THREE.Euler(0, yaw, 0)) };
+    g.position.copy(home.pos); g.quaternion.copy(home.quat); deckScene.add(g);
+    deckSticks.push({ p, group: g, home, hover: 0, atHome: true });
+  });
+  const ul = $('#crateList');
+  PROJECTS.forEach(p => { const li = document.createElement('li');
+    li.innerHTML = `<button type="button" id="pick-${p.id}" aria-pressed="false" style="--c:${p.color}" data-scramble><span class="d" aria-hidden="true"></span><span>${p.label.length > 20 ? 'very-very-very-safe' : p.label}</span><span class="st">Load</span></button>`;
+    li.querySelector('button').addEventListener('click', () => toggle(p.id)); ul.appendChild(li); });
+  wireScramble(ul);
+}
+function buildBeam(){
+  // a soft light cone rising off the screen, shown while the hologram is out
+  const geo = new THREE.CylinderGeometry(9, 5.5, 22, 32, 1, true); geo.translate(0, 11, 0);
+  const mat = new THREE.ShaderMaterial({ transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, side:THREE.DoubleSide,
+    uniforms:{ k:{ value:0 } }, vertexShader:'varying float vy; void main(){ vy = position.y/22.0; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.); }',
+    fragmentShader:'uniform float k; varying float vy; void main(){ gl_FragColor = vec4(vec3(0.75,0.85,1.0) * (1.0-vy) * 0.22 * k, 1.0); }' });
+  beam = new THREE.Mesh(geo, mat); beam.position.set(0.15, 6.2, -14.2); beam.rotation.x = -0.32; deckScene.add(beam);
+}
+const tweens = [];
+function tween(dur, fn){ return new Promise(res => { if (reduce){ fn(1); return res(); } tweens.push({ t0: clock.getElapsedTime(), dur, fn, res }); }); }
+function stepTweens(now){ for (let i=tweens.length-1;i>=0;i--){ const tw = tweens[i]; const k = Math.min(1,(now-tw.t0)/tw.dur); tw.fn(k); if (k>=1){ tweens.splice(i,1); tw.res(); } } }
+let deckGen = 0;
+function resetDeck(){
+  deckGen++; holoA = 0; tweens.splice(0).forEach(tw => tw.res()); busy = false; loadedId = null; screenMode = 'idle'; hovered = null; deckHot = false;
+  deckSticks.forEach(s => { s.group.position.copy(s.home.pos); s.group.quaternion.copy(s.home.quat); s.atHome = true; s.hover = 0; });
+  const w = narrow ? shots.wideN : shots.wide; cam.pos.copy(w.pos); cam.look.copy(w.look);
+  if (deckReady) syncUI();
+}
+async function insert(s){
+  const gen = deckGen; s.atHome = false; const g = s.group, p0 = g.position.clone(), q0 = g.quaternion.clone(); const above = new THREE.Vector3(SLOT.x, surfaceY + PLUG + 9, SLOT.z);
+  await tween(1.1, k => { const e = ease(k); const a = p0.clone().lerp(above, e); a.y += Math.sin(e*Math.PI)*8; g.position.copy(a); g.quaternion.slerpQuaternions(q0, UPRIGHT, Math.min(1, e*1.4)); });
+  if (gen !== deckGen) return;
+  await tween(0.45, k => { g.position.set(SLOT.x, surfaceY + PLUG + 9 - (9 + 1.8*STICK_SCALE)*k*k, SLOT.z); });
+  if (gen !== deckGen) return;
+  await tween(0.12, k => { g.position.y = surfaceY + PLUG - 1.8*STICK_SCALE + Math.sin(k*Math.PI)*0.25; });
+}
+async function removeStick(s){
+  const g = s.group, gen = deckGen;
+  await tween(0.35, k => { g.position.y = surfaceY + PLUG - 1.8*STICK_SCALE + (9 + 1.8*STICK_SCALE)*ease(k); });
+  if (gen !== deckGen) return;
+  const p0 = g.position.clone(), q0 = g.quaternion.clone();
+  await tween(0.9, k => { const e = ease(k); const a = p0.clone().lerp(s.home.pos, e); a.y += Math.sin(e*Math.PI)*6; g.position.copy(a); g.quaternion.slerpQuaternions(q0, s.home.quat, e); });
+  s.atHome = true;
+}
+async function toggle(id){
+  if (busy || !deckReady) return; busy = true; const gen = deckGen;
+  try{
+    const cur = deckSticks.find(s => s.p.id === loadedId);
+    if (cur){ screenMode = 'eject'; if (holoA > 0.02 && !reduce) await new Promise(r => setTimeout(r, 600)); if (gen !== deckGen) return; await removeStick(cur); if (gen !== deckGen) return; loadedId = null; syncUI(); if (cur.p.id === id){ screenMode = 'idle'; setHash('projects'); return; } }
+    await insert(deckSticks.find(x => x.p.id === id)); if (gen !== deckGen) return;
+    loadedId = id; loadT = clock.getElapsedTime(); screenMode = 'loading'; syncUI(); setHash(id);
+  } finally { if (gen === deckGen) busy = false; }
+}
+function setHash(h){ try{ history.replaceState(null, '', '#' + h); }catch(e){} }
+function syncUI(){
+  PROJECTS.forEach(p => { const b = $('#pick-'+p.id); b.setAttribute('aria-pressed', String(p.id === loadedId)); b.querySelector('.st').textContent = p.id === loadedId ? 'Eject' : 'Load'; });
+  const p = PROJECTS.find(x => x.id === loadedId), h = $('#holo');
+  $('#dsSlot').textContent = p ? (p.label.length > 20 ? 'very-very-very-safe' : p.label) : 'Empty'; $('#dsSlot').classList.toggle('hot', !!p);
+  $('#dsType').textContent = p ? p.made : '--'; $('#dsStack').textContent = p ? p.stack : '--'; $('#dsYear').textContent = p ? p.year : '--';
+  if (!p) $('#dsTime').textContent = '00:00';
+  $('#pvhint').textContent = p ? 'Projecting details' : 'Pick a USB to load it';
+  if (!p){ h.innerHTML = ''; return; }
+  const links = p.links.map(l => l.h ? `<a class="hbtn ${l.primary?'primary':''}" href="${l.h}" target="_blank" rel="noopener" data-scramble><span>${l.t}</span></a>`
+    : `<span class="hbtn ${l.primary?'primary':''}" aria-disabled="true">${l.t}</span>`).join('');
+  h.innerHTML = `<div class="meta"><span>USB 1 / ${p.kind}</span><span>${p.year}</span></div><h2 style="text-transform:none">${p.label}</h2>
+    <dl><dt>What</dt><dd>${p.what}</dd><dt>For</dt><dd>${p.who}</dd><dt>Why</dt><dd>${p.why}</dd><dt>Stack</dt><dd>${p.stack}</dd>
+    <dt>Pitch</dt><dd><span class="ph">[60 to 90 second pitch video goes here]</span></dd></dl>
+    <div class="actions">${links}<button type="button" class="hbtn" id="eject" data-scramble><span>Eject USB</span></button></div>`;
+  h.querySelector('#eject').addEventListener('click', () => toggle(loadedId)); wireScramble(h);
+}
+
+/* deck screen */
+function setupScreen(){
+  const c = document.createElement('canvas'); c.width = 1024; c.height = 576; screenCtx = c.getContext('2d');
+  screenTex = new THREE.CanvasTexture(c); screenTex.colorSpace = THREE.SRGBColorSpace; screenTex.anisotropy = 8;
+  consoleRoot.updateMatrixWorld(true);
+  const pos = screenMesh.geometry.attributes.position, v = new THREE.Vector3(), w = [];
+  for (let i=0;i<pos.count;i++){ v.fromBufferAttribute(pos, i).applyMatrix4(screenMesh.matrixWorld); w.push(v.clone()); }
+  const xs = w.map(q=>q.x), zs = w.map(q=>q.z), x0 = Math.min(...xs), x1 = Math.max(...xs), z0 = Math.min(...zs), z1 = Math.max(...zs);
+  const yAt = z => { const near = w.filter(q => Math.abs(q.z - z) < (z1 - z0)*0.05); return near.reduce((a, q) => a + q.y, 0) / near.length + 0.05; };
+  SCR = { x0, x1, z0, z1, yb: yAt(z0), yf: yAt(z1), cx: (x0 + x1)/2 };
+  screenMesh.geometry.setAttribute('uv', new THREE.Float32BufferAttribute(w.flatMap(q => [(q.x-x0)/(x1-x0), (z1-q.z)/(z1-z0)]), 2));
+  screenMesh.material = new THREE.MeshBasicMaterial({ map: screenTex, toneMapped:false, polygonOffset:true, polygonOffsetFactor:-2, polygonOffsetUnits:-8 });
+}
+function wave(seed, n){ let h = 0; for (const ch of seed) h = (h*31 + ch.charCodeAt(0)) >>> 0; const out = [];
+  for (let i=0;i<n;i++){ h = (h*1664525 + 1013904223) >>> 0; out.push(Math.max(.06, ((h>>>8)/16777216) * (0.35 + 0.65*Math.abs(Math.sin(i/37 + seed.length))))); } return out; }
+const waves = {}; PROJECTS.forEach(p => waves[p.id] = wave(p.label, 900));
+function drawScreen(now, holoK){
+  const x = screenCtx, W = 1024, H = 576, F = '"Barlow Semi Condensed", sans-serif';
+  x.fillStyle = '#0b0a0c'; x.fillRect(0,0,W,H); x.textAlign = 'left';
+  x.fillStyle = '#1b1a1d'; x.fillRect(0,0,W,52); x.font = `600 26px ${F}`; x.fillStyle = '#9a96a0'; x.fillText('USB 1', 22, 35); x.fillText('LUCA MAIOLO', W-180, 35);
+  const p = PROJECTS.find(q => q.id === loadedId);
+  if (screenMode === 'loading' && now - loadT > 0.9) screenMode = 'playing';
+  if (!p || screenMode === 'idle' || screenMode === 'eject'){
+    x.textAlign = 'center'; x.fillStyle = '#ecebee'; x.font = `700 64px ${F}`; x.fillText(screenMode === 'eject' ? 'Ejecting' : 'No USB', W/2, 270);
+    x.font = `500 32px ${F}`; x.fillStyle = '#9a96a0'; x.fillText('Insert a USB to load a project', W/2, 322);
+    for (let i=0;i<24;i++){ const v = (Math.sin(now*2.2 + i*.55)+1)/2; x.fillStyle = i<19 ? '#d8d6d0' : '#e2412f'; x.globalAlpha = .2 + v*.5; x.fillRect(W/2 - 168 + i*14, 400, 10, 26); }
+    x.globalAlpha = 1;
+  } else if (screenMode === 'loading'){
+    const k = Math.min(1, (now-loadT)/0.9); x.textAlign = 'center'; x.fillStyle = '#ecebee'; x.font = `700 48px ${F}`; x.fillText('Loading ' + p.label, W/2, 270, W-80);
+    x.fillStyle = '#2a292d'; x.fillRect(212, 310, 600, 14); x.fillStyle = '#e2412f'; x.fillRect(212, 310, 600*k, 14);
+  } else {
+    x.fillStyle = p.color; x.fillRect(22, 74, 10, 110);
+    x.fillStyle = '#f3f2f5'; x.font = `700 78px ${F}`; x.fillText(p.label, 50, 138, W-80);
+    x.fillStyle = '#a3a0a8'; x.font = `500 38px ${F}`; x.fillText(p.kind + ' · ' + p.stack, 50, 182, W-80);
+    // short summary on the screen itself
+    x.fillStyle = '#d9d7dd'; x.font = `500 30px ${F}`;
+    wrap(x, p.what, 50, 246, W-100, 36, 3);
+    const wy = 450, wh = 96, data = waves[p.id], off = ((now - loadT) * 60) | 0;
+    x.fillStyle = '#151417'; x.fillRect(0, wy-62, W, 124);
+    for (let i=0;i<W/4;i++){ const v = data[(i + off) % data.length]; x.fillStyle = i < W/8 ? '#e2412f' : '#6f6c75'; x.fillRect(i*4, wy - v*wh/2, 3, v*wh); }
+    x.fillStyle = '#ffffff'; x.fillRect(W/2-1, wy-62, 3, 124);
+    x.fillStyle = holoK > .05 ? '#e2412f' : '#9a96a0'; x.font = `600 26px ${F}`; x.textAlign = 'right';
+    x.fillText(holoK > .05 ? 'Hologram on' : 'Projecting details', W-22, 556);
+  }
+  screenTex.needsUpdate = true;
+}
+function wrap(x, text, X, Y, maxW, lh, maxLines){ const words = text.split(' '); let line = '', n = 0;
+  for (const w of words){ const t = line ? line + ' ' + w : w; if (x.measureText(t).width > maxW && line){ x.fillText(n === maxLines-1 ? line + '…' : line, X, Y + n*lh); if (++n >= maxLines) return; line = w; } else line = t; }
+  if (line) x.fillText(line, X, Y + n*lh); }
+
+/* ---------- sizes and cameras ---------- */
+let narrow = false;
+function resize(){
+  if (!renderer) return; const w = innerWidth, h = innerHeight; renderer.setSize(w, h, false); narrow = w < 860;
+  const bw = renderer.domElement.width, bh = renderer.domElement.height, cp = (narrow ? 5 : 6) * renderer.getPixelRatio();
+  rtScene.setSize(bw, bh); barrel.material.uniforms.res.value.set(bw, bh); barrel.material.uniforms.dpr.value = renderer.getPixelRatio();
+  rt.setSize(Math.ceil(bw/cp), Math.ceil(bh/cp)); post.material.uniforms.res.value.set(Math.ceil(bw/cp)*cp, Math.ceil(bh/cp)*cp); post.material.uniforms.cell.value = cp;
+  homeCam.aspect = deckCam.aspect = w/h; homeCam.updateProjectionMatrix(); deckCam.updateProjectionMatrix();
+}
+addEventListener('resize', resize);
+const shots = {
+  wide:  { pos: new THREE.Vector3(4, 66, 108), look: new THREE.Vector3(4, 0, 6) },
+  focus: { pos: new THREE.Vector3(14, 40, 30), look: new THREE.Vector3(14, 5, -14) },
+  holo:  { pos: new THREE.Vector3(10, 34, 58), look: new THREE.Vector3(10, 26, -12) },
+  wideN: { pos: new THREE.Vector3(4, 120, 178), look: new THREE.Vector3(6, 0, 14) },
+  focusN:{ pos: new THREE.Vector3(15, 52, 40), look: new THREE.Vector3(15, 4, -14) },
+  holoN: { pos: new THREE.Vector3(10, 48, 78), look: new THREE.Vector3(10, 30, -12) },
+};
+const cam = { pos: shots.wide.pos.clone(), look: shots.wide.look.clone() };
+
+/* ---------- picking on the deck ---------- */
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2(); let hovered = null;
+function stickAt(e){
+  ptr.set(e.clientX/innerWidth*2 - 1, 1 - e.clientY/innerHeight*2); ray.setFromCamera(ptr, deckCam);
+  const objs = []; deckSticks.forEach(s => s.group.traverse(o => { if (o.isMesh) objs.push(o); }));
+  const hit = ray.intersectObjects(objs, false)[0]; return hit ? deckSticks.find(s => s.p.id === hit.object.userData.stick) : null;
+}
+const isBackdrop = el => !el || el === document.body || el === SC || el === screenEl || el.id === 'scene' || el.classList.contains('pv');
+addEventListener('pointermove', e => { if (view !== 'projects') return;
+  const [x, y] = toPage(e.clientX, e.clientY);
+  if (e.pointerType !== 'mouse' || !isBackdrop(document.elementFromPoint(x, y))){ hovered = null; deckHot = false; return; }
+  hovered = stickAt({ clientX:x, clientY:y }); deckHot = !!hovered; });
+addEventListener('click', e => { if (view !== 'projects' || !isBackdrop(e.target)) return; const s = stickAt(e); if (s) toggle(s.p.id); });
+
+// CSS matrix3d that maps a w x h box onto any four corners (TL, TR, BR, BL)
+function quadMatrix(w, h, q){
+  const src = [[0,0],[w,0],[w,h],[0,h]], A = [], B = [];
+  for (let i=0;i<4;i++){ const [x, y] = src[i], [u, v] = q[i];
+    A.push([x, y, 1, 0, 0, 0, -u*x, -u*y]); B.push(u); A.push([0, 0, 0, x, y, 1, -v*x, -v*y]); B.push(v); }
+  for (let i=0;i<8;i++){ let m = i; for (let r=i+1;r<8;r++) if (Math.abs(A[r][i]) > Math.abs(A[m][i])) m = r;
+    [A[i], A[m]] = [A[m], A[i]]; [B[i], B[m]] = [B[m], B[i]];
+    for (let r=0;r<8;r++){ if (r === i) continue; const f = A[r][i]/A[i][i]; for (let c=i;c<8;c++) A[r][c] -= f*A[i][c]; B[r] -= f*B[i]; } }
+  const H = B.map((b, i) => b/A[i][i]);
+  return `matrix3d(${H[0]},${H[3]},0,${H[6]},${H[1]},${H[4]},0,${H[7]},0,0,1,0,${H[2]},${H[5]},0,1)`;
+}
+const toScreenPx = (x, y, z) => { tmp.set(x, y, z).project(deckCam); return [(tmp.x*.5+.5)*innerWidth, (-tmp.y*.5+.5)*innerHeight]; };
+
+/* ---------- loop ---------- */
+const tmp = new THREE.Vector3();
+let last = performance.now();
+function frame(now){
+  const t = clock.getElapsedTime(); stepTweens(t);
+  const rawDt = Math.min(0.25, (now - last)/1000), dt = Math.min(0.05, rawDt); last = now;
+  const maxScroll = Math.max(1, SC.scrollHeight - SC.clientHeight), sp = clamp01(SC.scrollTop / maxScroll);
+  const grow = revealStart < 0 ? 0 : reduce ? 1 : 1 - Math.pow(1 - clamp01((now - revealStart)/900), 3);
+
+  if (view === 'home' && homeSticks.length){
+    // 0 to .3: one stick. .3 to .7: the others slide out. after .7: lock-on labels.
+    const split = ease(smooth(0.18, 0.62, sp)), labels = smooth(0.55, 0.8, sp);
+    const spread = narrow ? 3.1 : 6.2, d = narrow ? 34 : 26;
+    homeCam.position.set(0, 2.5 + split*1.2, d + split*(narrow ? 6 : 4)); homeCam.lookAt(0, split*0.4 - labels*2.6, 0);
+    homeSticks.forEach((s, i) => {
+      const off = (i - 1) * spread * split; s.spin.position.set(off, 0, i === 1 ? 0 : -1.5*split);
+      if (!reduce) s.spin.rotation.y += dt * (0.45 + i*0.04); s.spin.visible = i === 1 || split > 0.01;
+      s.spin.scale.setScalar(i === 1 ? 1 : Math.max(0.001, split));
+      if (s.el){ tmp.set(off, -4.4, s.spin.position.z).project(homeCam); const top = new THREE.Vector3(off, 4.2, s.spin.position.z).project(homeCam);
+        const x = (tmp.x*.5+.5)*innerWidth, y = (-tmp.y*.5+.5)*innerHeight, yt = (-top.y*.5+.5)*innerHeight;
+        s.el.style.transform = `translate(${x}px, ${y + 8}px) translate(-50%, 0)`; s.el.style.opacity = labels;
+        const box = s.el.querySelector('.box'); const bw = Math.min(130, (spread*0.55/ (d*0.5)) * innerHeight * 0.9);
+        box.style.width = bw + 'px'; box.style.height = (y - yt + 12) + 'px'; box.style.top = (yt - y - 14) + 'px'; }
+    });
+    $('#found').textContent = String(split > 0.95 ? 3 : split > 0.4 ? 2 : 1);
+    setScan(1 + (split > 0.2) + (split > 0.6) + (split > 0.95) + (labels > 0.5) + (labels > 0.95));
+    post.material.uniforms.grow.value = grow;
+    renderer.toneMapping = THREE.NoToneMapping;
+    renderer.setRenderTarget(rt); renderer.clear(); renderer.render(homeScene, homeCam);
+    renderer.setRenderTarget(rtScene); renderer.clear(); renderer.render(postScene, postCam);
+    barrel.material.uniforms.mode.value = 0;
+    renderer.setRenderTarget(null); renderer.clear(); renderer.render(barrelScene, postCam);
+  } else if (view === 'soon' && renderer){
+    renderer.setRenderTarget(rtScene); renderer.clear(); barrel.material.uniforms.mode.value = 1; renderer.toneMapping = THREE.NoToneMapping;
+    renderer.setRenderTarget(null); renderer.clear(); renderer.render(barrelScene, postCam);
+  } else if (view === 'projects' && consoleRoot){
+    // the hologram lifts off by itself a moment after the track starts playing
+    const wantHolo = loadedId && screenMode === 'playing' && t - loadT > 1.3 ? 1 : 0;
+    holoA = reduce ? wantHolo : clamp01(holoA + (wantHolo ? rawDt/1.2 : -rawDt/0.55));
+    const holoK = ease(holoA);
+    const base = loadedId && screenMode !== 'eject' ? (narrow ? shots.focusN : shots.focus) : (narrow ? shots.wideN : shots.wide);
+    const hs = narrow ? shots.holoN : shots.holo;
+    const wantPos = base.pos.clone().lerp(hs.pos, holoK), wantLook = base.look.clone().lerp(hs.look, holoK);
+    cam.pos.lerp(wantPos, reduce ? 1 : 0.06); cam.look.lerp(wantLook, reduce ? 1 : 0.06);
+    deckCam.position.copy(cam.pos); deckCam.lookAt(cam.look);
+    deckSticks.forEach(s => { const want = (s === hovered && s.p.id !== loadedId && !busy) ? 1 : 0; s.hover += (want - s.hover)*0.15; if (s.atHome) s.group.position.y = s.home.pos.y + s.hover*1.2; });
+    beam.material.uniforms.k.value = holoK; beam.visible = holoK > 0.01;
+    drawScreen(t, holoK);
+    // hologram: starts exactly on the deck screen's four corners, then unfolds to a flat panel in the middle
+    const h = $('#holo'), hw = h.offsetWidth, hh = h.offsetHeight;
+    const from = [toScreenPx(SCR.x0, SCR.yb, SCR.z0), toScreenPx(SCR.x1, SCR.yb, SCR.z0), toScreenPx(SCR.x1, SCR.yf, SCR.z1), toScreenPx(SCR.x0, SCR.yf, SCR.z1)];
+    // final spot: centred over the screen, its bottom edge floating just above the screen's top edge
+    const topY = Math.min(from[0][1], from[1][1]), midX = (from[0][0] + from[1][0])/2;
+    const L = Math.max(16, Math.min(innerWidth - 16 - hw, midX - hw/2)), T = Math.max(20, Math.min(topY - hh - 18, innerHeight - 70 - hh));
+    const to = [[L, T], [L + hw, T], [L + hw, T + hh], [L, T + hh]];
+    if (holoK > 0) h.style.transform = quadMatrix(hw, hh, from.map((a, i) => [a[0] + (to[i][0] - a[0])*holoK, a[1] + (to[i][1] - a[1])*holoK]));
+    const flick = holoK > 0 && holoK < 1 && !reduce ? (Math.random() < 0.12 ? 0.6 : 1) : 1;
+    h.style.opacity = Math.min(1, holoK*2.5) * flick; h.classList.toggle('on', holoK > 0.9);
+    $('#pvhint').style.opacity = holoK > 0.1 ? 0 : 1;
+    document.querySelector('.crate').style.opacity = 1 - holoK*0.85;
+    $('#deckstat').style.opacity = $('#meter').style.opacity = 1 - holoK*0.85; $('#pvtitle').style.opacity = 1 - smooth(0, 0.3, holoK);
+    const playing = loadedId && screenMode === 'playing';
+    if (playing){ const el = Math.floor(t - loadT); $('#dsTime').textContent = String(Math.floor(el/60)).padStart(2,'0') + ':' + String(el%60).padStart(2,'0'); }
+    const wv = loadedId ? waves[loadedId] : null, off = ((t - loadT) * 60) | 0;
+    [...barsEl.children].forEach((b, i) => { const v = playing ? Math.min(1, wv[(off + i*7) % wv.length] * (1.25 - i*0.03)) : 0.06 + 0.05*Math.abs(Math.sin(t*2 + i*0.6)); b.style.height = (v*100).toFixed(0) + '%'; });
+    $('#mtState').textContent = playing ? 'Playing' : loadedId ? 'Cueing' : 'Standby';
+    renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = (0.2 + 0.85*grow) * (1 - 0.6*holoK);
+    renderer.setRenderTarget(rtScene); renderer.clear(); renderer.render(deckScene, deckCam);
+    barrel.material.uniforms.mode.value = 1;
+    renderer.setRenderTarget(null); renderer.clear(); renderer.render(barrelScene, postCam);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ---------- start ---------- */
+let seen = false; try { seen = sessionStorage.getItem('lm-booted') === '1'; } catch(e){}
+if (!seen) boot(); else { revealStart = performance.now(); }
+route();
+if (renderer){ resize(); requestAnimationFrame(frame); }
+</script>
