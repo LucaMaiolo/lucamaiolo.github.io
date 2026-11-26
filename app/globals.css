@@ -103,7 +103,8 @@ dl.stats dd{margin:0}
 .hbtn{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border:1px solid rgba(230,240,255,.6);background:transparent;color:inherit;cursor:pointer;text-shadow:inherit}
 .hbtn.primary{background:var(--ghost);color:var(--void);text-shadow:none;border-color:var(--ghost)}
 .hbtn.hov{border-color:var(--red);background:var(--red);color:var(--ghost)}
-.hbtn[aria-disabled="true"]{opacity:.6;cursor:not-allowed}
+.hbtn{text-transform:inherit;letter-spacing:inherit}
+.hbtn.soon{border-style:dashed;border-color:rgba(230,240,255,.35);color:var(--dim);cursor:default}
 
 /* bottom command bar */
 .bar{position:fixed;left:0;right:0;bottom:0;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:0 16px;background:#121211;border-top:1px solid var(--line);
@@ -113,6 +114,15 @@ dl.stats dd{margin:0}
 .bar nav a::before{content:"";width:6px;height:6px;border:1px solid var(--ghost)}
 .bar nav a[aria-current="page"]::before,.bar nav a.hov::before{background:var(--red);border-color:var(--red)}
 .bar .right{display:flex;align-items:center;gap:18px;white-space:nowrap}
+.bar .ext{color:var(--dim);padding:8px 0}
+.bar .ext.hov,.bar .ext:focus-visible{color:var(--ghost)}
+.quick p{margin:0 0 8px}
+.quick ul{list-style:none;margin:0;padding:0}
+.quick a{display:grid;grid-template-columns:auto 1fr;gap:0 10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.quick li:last-child a{border-bottom:0}
+.quick .d{width:8px;height:8px;background:var(--c)}
+.quick .st{grid-column:2;color:var(--dim);font-size:11px}
+.quick a.hov span:nth-child(2){color:var(--red)}
 .clock{font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;gap:7px}
 .clock::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1.6s steps(2) infinite}
 @keyframes blink{50%{opacity:.2}}
@@ -224,8 +234,13 @@ dl.stats dd{margin:0}
   .holo{padding:16px}
   .lock span{display:none}
   .pvhint{bottom:104px}
-  .deckstat,.meter,.sidelab,.ch1 .tr{display:none}
+  .deckstat,.meter,.sidelab{display:none}
+  .ch1 .tl{margin-bottom:0}
+  .ch1 .tr{max-width:none;margin-bottom:auto;background:rgba(10,10,10,.82)}
+  .bar nav{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent);padding-right:40px;scroll-snap-type:x proximity}
+  .bar nav.end{-webkit-mask-image:none;mask-image:none}
   .pvtitle{display:none}
   .ch2 .scanlog{display:none}
 }
+@media (hover: none){ .readout{display:none} }
 @media (prefers-reduced-motion: reduce){ .clock::before,.scrollcue i,.holo::after,#crt::before,#crt .roll{animation:none} }
