@@ -61,6 +61,6 @@ export const BOOT_LINES = [
 ];
 
 export const SCAN_LINES = [
-  ['Mount /dev/usb', 'ok'], ['Found jacpot.kt', 'ok'], ['Found very-very-very-safe', '100% safe'],
+  ['Mount /dev/usb', 'ok'], ['Found jacpot.kt', 'ok'], ['Found very-safe', '100% safe'],
   ['Found jachl.js', 'ok'], ['3 sticks ready', 'ok'], ['Waiting for load', 'now', true],
 ];

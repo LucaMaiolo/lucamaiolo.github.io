@@ -5,6 +5,7 @@ import { HOME_STATS, PROJECTS } from '@/data/site';
 const plain = { textTransform: 'none', letterSpacing: 0 };
 
 // Home: a scroll story. One USB stick spins, the other two slide out, then "Load projects".
+// The scan log and stats stay pinned for the whole story, so they live in the same section as the button.
 export default function HomeView() {
   return (
     <div className="view" id="home">
@@ -52,13 +53,12 @@ export default function HomeView() {
             ['Hackathons', 'First one coming up'],
           ]} />
         </Panel>
-      </section>
-
-      <section className="chapter ch3 gutter u">
-        <p>{PROJECTS.length} projects on file</p>
-        <button type="button" className="load" id="loadBtn" data-scramble="">
-          <span className="sq" aria-hidden="true" /><span>Load projects</span>
-        </button>
+        <div className="cta">
+          <p>{PROJECTS.length} projects on file</p>
+          <button type="button" className="load" id="loadBtn" data-scramble="">
+            <span className="sq" aria-hidden="true" /><span>Load projects</span>
+          </button>
+        </div>
       </section>
     </div>
   );
