@@ -22,7 +22,7 @@ export const viewport = {
   themeColor: '#060606',
 };
 
-const FONTS = 'https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Permanent+Marker&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap';
+const FONTS = 'https://fonts.googleapis.com/css2?family=Doto:ROND,wght@0..100,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap';
 
 export default function RootLayout({ children }) {
   return (
