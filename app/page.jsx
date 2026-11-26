@@ -16,7 +16,6 @@ export default function Page() {
       <CrtFilter />
       <div id="screen">
         <canvas id="scene" aria-hidden="true" />
-        <div className="grid" aria-hidden="true" />
         <div id="scroller" tabIndex={-1}>
           <HomeView />
           <div className="locks" id="locks" aria-hidden="true">
@@ -36,7 +35,6 @@ export default function Page() {
         <div id="xh" hidden aria-hidden="true">
           <svg><path className="v" /><path className="h" /></svg>
           <i className="p" />
-          <span className="t" />
         </div>
       </div>
       <BootScreen />

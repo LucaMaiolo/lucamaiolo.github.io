@@ -8,13 +8,13 @@ export default function Hologram() {
     <article className="holo u" id="holo" aria-live="polite">
       {PROJECTS.map((p, i) => (
         <div key={p.id} data-project={p.id} hidden>
-          <div className="meta"><span>USB {i + 1} / {p.kind}</span><span>{p.year}</span></div>
+          <div className="meta"><span>{p.kind}</span><span>{p.made}, {p.year}</span></div>
           <h2 style={{ textTransform: 'none' }}>{p.label}</h2>
           <dl>
             <dt>What</dt><dd>{p.what}</dd>
             <dt>For</dt><dd>{p.who}</dd>
             <dt>Why</dt><dd>{p.why}</dd>
-            <dt>Stack</dt><dd>{p.stack}</dd>
+            <dt>Built with</dt><dd>{p.stack}</dd>
             <dt>Pitch</dt><dd><span className="ph">[60 to 90 second pitch video goes here]</span></dd>
           </dl>
           <div className="actions">
