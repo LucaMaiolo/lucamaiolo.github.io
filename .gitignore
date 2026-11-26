@@ -1,6 +1,5 @@
-_site/
-.jekyll-cache/
-.sass-cache/
-vendor/
-Gemfile.lock
+node_modules/
+.next/
+out/
 .DS_Store
+*.log

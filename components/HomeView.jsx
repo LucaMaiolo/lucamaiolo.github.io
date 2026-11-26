@@ -1,0 +1,59 @@
+import Panel from './Panel';
+import Stats from './Stats';
+import { HOME_STATS, PROJECTS } from '@/data/site';
+
+const plain = { textTransform: 'none', letterSpacing: 0 };
+
+// Home: a scroll story. One USB stick spins, the other two slide out, then "Load projects".
+export default function HomeView() {
+  return (
+    <div className="view" id="home">
+      <section className="chapter ch1 gutter u">
+        <Panel className="tl">
+          <h1 className="name" style={{ textTransform: 'none' }}>Luca<br />Maiolo</h1>
+          <p className="bio" style={plain}>
+            Computer Science student at John Abbott College in Montreal. I build web apps and study how they get broken into.
+          </p>
+          <div className="readout" aria-hidden="true">
+            <span className="tag"><b>X</b><span id="mx">0000</span></span>
+            <span className="tag"><b>Y</b><span id="my">0000</span></span>
+          </div>
+        </Panel>
+        <Panel className="tr">
+          <dl className="stats">
+            <dt>System</dt><dd>LM/OS 2026.11</dd>
+            <dt>Uptime</dt><dd id="uptime">00:00:00</dd>
+            <dt>Signal</dt><dd><span className="sig" aria-hidden="true"><i /><i /><i /><i /></span> Strong</dd>
+            <dt>On file</dt><dd>{PROJECTS.length} projects</dd>
+          </dl>
+        </Panel>
+        <div className="ml" aria-hidden="true">45.4065° N</div>
+        <div className="mr" aria-hidden="true">73.9496° W</div>
+        <Panel className="bl">
+          <Stats rows={HOME_STATS} />
+        </Panel>
+        <div className="br"><span className="scrollcue">Scroll<i aria-hidden="true" /></span></div>
+      </section>
+
+      <section className="chapter ch2 gutter u">
+        <Panel className="scanlog">
+          <pre id="scanlog" aria-live="off" />
+        </Panel>
+        <Panel>
+          <Stats rows={[
+            ['Sticks found', '1', 'found'],
+            ['Format', 'One project per USB'],
+            ['Hackathons', '0 so far, first one pending'],
+          ]} />
+        </Panel>
+      </section>
+
+      <section className="chapter ch3 gutter u">
+        <p>{PROJECTS.length} projects on file</p>
+        <button type="button" className="load" id="loadBtn" data-scramble="">
+          <span className="sq" aria-hidden="true" /><span>Load projects</span>
+        </button>
+      </section>
+    </div>
+  );
+}
